@@ -10,7 +10,8 @@ export default class SwapiService {
     return body;
   };
   getAllPioples = async () => {
-    return await this.getResource(`/people/`);
+    const res =  await this.getResource(`/people/`);
+    return res.results;
   };
   getPerson = async id => {
     const person = await this.getResource(`/people/${id}/`);
@@ -26,7 +27,8 @@ export default class SwapiService {
     };
   };
   getAllStarShips = async () => {
-    return await this.getResource(`/starships/`);
+    const res = await this.getResource(`/starships/`);
+    return res.results
   };
   _extractId(item) {
     const idRegexp = /\/([0-9]*)\/$/;
@@ -46,7 +48,8 @@ export default class SwapiService {
     };
   };
   getAllPlanets = async () => {
-    return await this.getResource(`/planets/`);
+    const res = await this.getResource(`/planets/`);
+    return res.results
   };
   getPlanet = async id => {
     const planet = await this.getResource(`/planets/${id}`);

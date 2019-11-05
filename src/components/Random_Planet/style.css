@@ -1,0 +1,21 @@
+.random-planet{
+    display: flex;
+}
+.planet-name{
+    margin-bottom: 25px;
+    margin-left: 20px;
+}
+
+.plaanet-img{
+    height: 200px;
+    width: 200px;
+    border:1px solid rgb(250, 243, 243);
+    border-radius:10px
+}
+.list-group-item{
+    border-left: none;
+    border-right: none;
+}
+.list-group-fllush{
+    margin-left: 40px;
+}
