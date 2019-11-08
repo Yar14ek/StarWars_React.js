@@ -1,0 +1,17 @@
+.person-details{
+    width: 500px;
+    display: flex;
+    margin-left: 100px;
+    background-color:#303030;
+    height: max-content;
+    border-radius:8px
+
+}
+
+.person-img{
+    height: 200px;
+    width: 160px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 15px;
+}

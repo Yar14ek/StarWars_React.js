@@ -9,9 +9,14 @@ export default class SwapiService {
     const body = await res.json();
     return body;
   };
-  getAllPioples = async () => {
-    const res =  await this.getResource(`/people/`);
-    return res.results;
+  getAllPioples = async page => {
+    const res =  await this.getResource(`/people/?page=${page}`);
+    return {
+      nextPage:res.next,
+      prevPage:res.previous,
+      peopleList:res.results
+      
+    };
   };
   getPerson = async id => {
     const person = await this.getResource(`/people/${id}/`);
@@ -19,11 +24,11 @@ export default class SwapiService {
   };
   _transformPerson = person => {
     return {
-      id: this._extractId(person),
+      birthYear:person.birth_year,
       name: person.name,
-      population: person.population,
-      rotatePeriod: person.rotation_period,
-      diametr: person.diameter
+      gender:person.gender,
+      eyeColor:person.eye_color,
+      id: this._extractId(person),
     };
   };
   getAllStarShips = async () => {

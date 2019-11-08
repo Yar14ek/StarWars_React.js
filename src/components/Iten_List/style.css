@@ -1,0 +1,25 @@
+.list{
+    width: 300px;
+    background-color: #2c2b2b;
+    height: max-content;
+
+}
+
+.list-item{
+    width: 300px;
+    cursor: pointer;
+}
+.list-item:hover{
+    background-color: #2c2b2b;
+    transform: translate(5px);
+}
+.button-block{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+
+}
+.button-block button{
+    margin-top: 20px;
+
+}

@@ -1,9 +1,15 @@
 .random-planet{
+    margin: 30px auto;
     display: flex;
+    padding: 20px;
+    background-color: rgb(63, 58, 58);
+    border: 1px solid rgb(90, 88, 88);
+    border-radius: 50px;
 }
 .planet-name{
     margin-bottom: 25px;
     margin-left: 20px;
+
 }
 
 .plaanet-img{
@@ -18,4 +24,7 @@
 }
 .list-group-fllush{
     margin-left: 40px;
+}
+.jambotron{
+    padding-top: -20px;
 }

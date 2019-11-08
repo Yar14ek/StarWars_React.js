@@ -12,9 +12,13 @@ class RandomPlanet extends Component {
 
   componentDidMount() {
     this.updatePlanet();
-    setInterval(() => {
+    this.interval = setInterval(() => {
         this.updatePlanet()
-    }, 2000);
+    }, 3000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.interval)
   }
   onError = err => {
     console.log(err);
@@ -35,7 +39,7 @@ class RandomPlanet extends Component {
     const { loading, planet } = this.state;
     const content = loading ? <Spinner /> : <ViewPlanet planet={planet} />;
 
-    return <div className="random-planet jumbotron rounded">{content}</div>;
+    return <div className="random-planet  rounded">{content}</div>;
   }
 }
 

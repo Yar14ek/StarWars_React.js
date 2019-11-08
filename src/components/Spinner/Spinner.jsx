@@ -3,6 +3,7 @@ import './style.css'
 
 const Spinner = () => {
   return (
+    <div className='spinner'>
     <div className="lds-css ng-scope">
       <div className="lds-double-ring">
         <div></div>
@@ -14,6 +15,7 @@ const Spinner = () => {
           <div></div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,3 +1,3 @@
-import Person_detail from './Person_Detail.jsx'
+import PersonDetail from './Person_Detail.jsx'
 
-export default Person_detail ;
+export default PersonDetail ;
