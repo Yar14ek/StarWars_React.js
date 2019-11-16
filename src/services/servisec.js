@@ -1,6 +1,10 @@
 export default class SwapiService {
   _apiBase = "https://swapi.co/api";
+  _imgBase = "https://starwars-visualguide.com/assets/img/"
 
+  _peopleImg = `${this._imgBase}characters/`
+  _planetImg = `${this._imgBase}planets/`
+  _starShipImg = `${this._imgBase}starship/`
   getResource = async url => {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
@@ -10,12 +14,11 @@ export default class SwapiService {
     return body;
   };
   getAllPioples = async page => {
-    const res =  await this.getResource(`/people/?page=${page}`);
+    const res = await this.getResource(`/people/?page=${page}`);
     return {
-      nextPage:res.next,
-      prevPage:res.previous,
-      peopleList:res.results
-      
+      nextPage: res.next,
+      prevPage: res.previous,
+      itemList: res.results ///fix it
     };
   };
   getPerson = async id => {
@@ -24,16 +27,17 @@ export default class SwapiService {
   };
   _transformPerson = person => {
     return {
-      birthYear:person.birth_year,
+      img:`${this._peopleImg}`,
+      birthYear: person.birth_year,
       name: person.name,
-      gender:person.gender,
-      eyeColor:person.eye_color,
-      id: this._extractId(person),
+      gender: person.gender,
+      eyeColor: person.eye_color,
+      id: this._extractId(person)
     };
   };
   getAllStarShips = async () => {
     const res = await this.getResource(`/starships/`);
-    return res.results
+    return res.results;
   };
   _extractId(item) {
     const idRegexp = /\/([0-9]*)\/$/;
@@ -52,9 +56,13 @@ export default class SwapiService {
       diametr: starship.diameter
     };
   };
-  getAllPlanets = async () => {
-    const res = await this.getResource(`/planets/`);
-    return res.results
+  getAllPlanets = async page => {
+    const res = await this.getResource(`/planets/?page=${page}`);
+    return {
+      nextPage: res.next,
+      prevPage: res.previous,
+      itemList: res.results
+    };
   };
   getPlanet = async id => {
     const planet = await this.getResource(`/planets/${id}`);
@@ -62,11 +70,13 @@ export default class SwapiService {
   };
   _transformPlanet = planet => {
     return {
+      img:`${this._planetImg}`,
       id: this._extractId(planet),
       name: planet.name,
       population: planet.population,
       rotatePeriod: planet.rotation_period,
-      diametr: planet.diameter
+      diameter: planet.diameter,
+      climate:planet.climate,
     };
   };
 }

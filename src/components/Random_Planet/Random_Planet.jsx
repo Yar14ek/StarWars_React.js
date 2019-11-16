@@ -44,7 +44,7 @@ class RandomPlanet extends Component {
 }
 
 const ViewPlanet = ({ planet }) => {
-  const { name, population, rotatePeriod, diametr, id } = planet;
+  const { name, population, rotatePeriod, diameter, id } = planet;
   return (
     <React.Fragment>
       <img
@@ -64,7 +64,7 @@ const ViewPlanet = ({ planet }) => {
             <span>{rotatePeriod}</span>
           </li>
           <li className="list-group-item">
-            <span className="term"></span>Diametr: <span>{diametr}</span>
+            <span className="term"></span>Diameter: <span>{diameter}</span>
           </li>
         </ul>
       </div>
