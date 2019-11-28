@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import Spinner from "../Spinner";
-import WithData from '../hocHalper'
+import {WithData} from '../hocHalper'
 import "./style.css";
 
 const ItemList = ({

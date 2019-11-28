@@ -5,6 +5,7 @@ export default class SwapiService {
   _peopleImg = `${this._imgBase}characters/`
   _planetImg = `${this._imgBase}planets/`
   _starShipImg = `${this._imgBase}starship/`
+  
   getResource = async url => {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {

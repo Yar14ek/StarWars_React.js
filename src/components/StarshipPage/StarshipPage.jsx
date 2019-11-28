@@ -1,17 +1,43 @@
 import React, { Component } from "react";
 import ItemList from "../ItemList";
-import ItemDetail from "../ItemDetail";
-import Row from "../Row";
-import SwapiService from "../../services/servisec";
+import ItemDetail,{Record} from "../ItemDetail";
+import Row from "../Row/Row";
+import { WithSwapiServise } from "../hocHalper";
+
 
 class StarshipPage extends Component {
-  swapiService = new SwapiService();
-  state = {};
+  state = {
+    starShipId:'3'
+  };
+  getPersonId(id){
+  this.state({
+    starShipId:id
+  })
+}
+
   render() {
-    const itemList = <ItemList />;
-    const detail = <ItemDetail />;
+    const{getAllStarShips, getStarship}=this.props.swapiService
+
+    const itemList = <ItemList
+    getPersonId={id=>this.getPersonId(id)}
+    getData={getAllStarShips}
+    renderItem={item=>(
+      <div>{item.name}</div>
+    )}
+     />;
+    const detail = <ItemDetail 
+    getData={getStarship}
+    personId={this.state.starShipId}>
+      <Record field='name' label ="Name" />
+      {/* <Record field='' label ="" />
+      <Record field='' label ="" /> */}
+    </ItemDetail>
+    
+    
+
+
     return <Row left={itemList} rigth={detail} />;
   }
 }
 
-export default StarshipPage;
+export default WithSwapiServise(StarshipPage);

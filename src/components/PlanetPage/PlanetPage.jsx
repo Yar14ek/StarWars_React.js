@@ -1,24 +1,27 @@
 import React, { Component } from "react";
 import Row from "../Row/Row";
 import ItemList from "../ItemList";
-import ItemDetail,{ Record } from "../ItemDetail";
-import SwapiService from '../../services/servisec'
+import ItemDetail, { Record } from "../ItemDetail";
+import { WithSwapiServise } from "../hocHalper";
 
 class PlanetPage extends Component {
-    swapiService = new SwapiService()
   state = {
     personId: 3
   };
+
   getPersonId(id) {
     this.setState({
       personId: id
     });
   }
+
   render() {
+    const { getAllPlanets, getPlanet } = this.props.swapiService;
+
     const itemList = (
       <ItemList
         getPersonId={id => this.getPersonId(id)}
-        getData={this.swapiService.getAllPlanets}
+        getData={getAllPlanets}
         renderItem={item => (
           <div>
             {item.name}{" "}
@@ -27,18 +30,17 @@ class PlanetPage extends Component {
         )}
       />
     );
-    const itemDetail = <ItemDetail 
-                        getData = {this.swapiService.getPlanet} 
-                        personId={this.state.personId}>
-
-                        <Record field = 'population' label = 'Population' />
-                        <Record field = 'rotatePeriod' label = 'Rotate' />
-                        <Record field = 'climate' label = 'Climate' />
-
-                    </ItemDetail>;
+    
+    const itemDetail = (
+      <ItemDetail getData={getPlanet} personId={this.state.personId}>
+        <Record field="population" label="Population" />
+        <Record field="rotatePeriod" label="Rotate" />
+        <Record field="climate" label="Climate" />
+      </ItemDetail>
+    );
 
     return <Row left={itemList} rigth={itemDetail} />;
   }
 }
 
-export default PlanetPage;
+export default WithSwapiServise(PlanetPage);

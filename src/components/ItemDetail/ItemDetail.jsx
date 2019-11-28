@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Spinner from "../Spinner";
 import "./style.css";
-import SwapiService from "../../services/servisec";
 
 const Record = ({ item, field, label }) => {
   return (
@@ -15,7 +14,6 @@ const Record = ({ item, field, label }) => {
 export { Record };
 
 export default class ItemDetail extends Component {
-  swapiService = new SwapiService();
   state = {
     item: {},
     loader: true
@@ -38,12 +36,13 @@ export default class ItemDetail extends Component {
     this.setState({ loader: true });
     this.props
       .getData(id)
-      .then(item =>
+      .then(item => {
+        console.log(item);
         this.setState({
           item,
           loader: false
-        })
-      )
+        });
+      })
       .catch(err => console.log(err));
   };
 
@@ -51,24 +50,23 @@ export default class ItemDetail extends Component {
     if (this.state.loader) {
       return <Spinner />;
     }
-    const{item} = this.state
-    // const { id, name, img } = this.state.item;
+    const { item } = this.state;
     return (
       <div className="person-details ">
-        <img className="person-img" src={`${item.img}${item.id}.jpg`} alt={item.name} />
+        <img
+          className="person-img"
+          src={`${item.img}${item.id}.jpg`}
+          alt={item.name}
+        />
         <div className="card-body">
           <h4>{item.name}</h4>
           <ul className="list-group list-group-flush">
-            {
-              React.Children.map(this.props.children,(chaild)=>{
-                return React.cloneElement(chaild,{item})
-              })
-            }
+            {React.Children.map(this.props.children, chaild => {
+              return React.cloneElement(chaild, { item });
+            })}
           </ul>
         </div>
       </div>
     );
   }
 }
-
-

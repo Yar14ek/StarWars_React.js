@@ -1,0 +1,16 @@
+.header-nav{
+    display: flex;
+}
+
+.header-list{
+    display: flex;
+
+}
+.header-list-item{
+    list-style-type: none;
+    margin: 0 10px;
+    margin-top: 22px;
+    font-size: 20px;
+    font-weight:400;
+    font-family: sans-serif;
+}
